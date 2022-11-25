@@ -1,0 +1,49 @@
+#topbox{
+    margin: 250px;
+}
+
+#mainbox1{
+    margin: 0px auto;
+    width: 550px;
+    border: 800px;
+    text-align: center;
+    float: contour;
+}
+#mainbox2{
+    margin: 0px auto;
+    width: 550px;
+    border: 800px;
+    padding-left: 150px;
+    text-align: center;
+    float: contour;
+    display: none;
+}
+.loginarea{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    float: left;
+    text-align: center;
+}
+#summitbutton{
+    margin: 0 auto;
+    padding: 28px;
+}
+#loginbox{
+    margin: 0 auto;
+    align-items: center;
+}
+#serviceerror{
+    margin: auto;
+    text-align: center;
+    display: inline;
+}
+.errormessage{
+    color: red;
+}
+#makers{
+    margin-top: 300px;
+    margin-bottom: 0;
+    text-align: center;
+
+}

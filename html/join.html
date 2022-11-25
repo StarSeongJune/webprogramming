@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/join.css">
+    <script src="../js/join.js"></script>
+</head>
+<body>
+<div id="외부박스">
+    <div>
+        <form method="post" action="/">
+            <ul>
+                <li id="로고박스_li"><div><h1>참조 가계부 회원가입</h1></div></li>
+                <li><h3 class="title">이름</h3><div id="nametitle" ></div></li>
+                <li><label><input type="text" id="이름" name="name" placeholder=""  class="input"> </label></li>
+                <li><h3 class="title">아이디</h3><div id="idtitle"></div></li>
+                <li><label><input type="text" id="아이디" name="id"placeholder="5~15자 이내" class="input"></label></li>
+                <li><h3 class="title">비밀번호</h3><div id="passwordtitle"></div></li>
+                <li><label><input type="password" id="비밀번호" name="pw"placeholder="6~15자 이내" class="input"> </label></li>
+                <li><h3 class="title">비밀번호 확인</h3><div id="passwordchecktitle"></div></li>
+                <li><label><input type="password" id="비밀번호체크" name="pwcheck"placeholder="" class="input"> </label></li>
+                <li><h3 class="title">연락처</h3><div id="phonetitle"></div></li>
+                <li><label><select name="pn0" class="input_pn" style="height: 54px;">
+                    <option >010</option>
+                </select > - <input type="text" name="pn1" class="input_pn"> - <input type="text" name="pn3" class="input_pn"></label></li>
+                <li><label><button id="submit_button">등록하기</button>
+                </label></li>
+            </ul>
+        </form>
+    </div>
+</div>
+</body>
+</html>
