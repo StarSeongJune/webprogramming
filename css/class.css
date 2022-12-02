@@ -27,6 +27,11 @@ overflow-y: scroll;
 background-color: #FCF8FF;  
 }
 
+fieldset{
+	display: block;
+	border:3px solid #f7edff;
+}
+
 .choice_container{
 width: 400px;
 height: 850px;
@@ -233,4 +238,7 @@ font-weight: 500;
   height: 100px;
   padding: auto;
   margin: auto;
+}
+.category{
+  display: none;
 }

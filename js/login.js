@@ -24,17 +24,21 @@ function login() {
     }
 
     if (chkID && chkPw) {
+        
         console.log('로그인 성공;');
-        //form.submit();
+        form.submit();
     }
 	else{
 		console.log('fail. form.submit();');
 	}
 }
 
+
+
+
 function checkValidID(form) {
     if (form.id.value == "") {
-        document.getElementById('alert_username').innerText = "회원ID를 입력해주세요";
+        document.getElementById('alert_username').innerText = "ID를 입력해주세요";
         //form.username.focus();
         return false;
     }
@@ -44,7 +48,7 @@ function checkValidID(form) {
 
 function checkValidPassword(form) {
     if (form.password.value == "") {
-        document.getElementById('alert_password').innerText = "비밀번로를 입력해주세요";
+        document.getElementById('alert_password').innerText = "비밀번호를 입력해주세요";
         //form.password.focus();
         return false;
     }
@@ -61,15 +65,15 @@ function checkValidPassword(form) {
 
     if (pw.length < 6) {
         // 최소 6문자.
-        document.getElementById('alert_password').innerText = "잘못된 형싱의 비밀번호입니다.";
+        document.getElementById('alert_password').innerText = "잘못된 형식의 비밀번호입니다.";
         return false;
     } else if (pw.search(/\s/) != -1) {
         // 공백 제거.
-        document.getElementById('alert_password').innerText = "잘못된 형싱의 비밀번호입니다.";
+        document.getElementById('alert_password').innerText = "잘못된 형식의 비밀번호입니다.";
         return false;
     } else if (num < 0 && eng < 0 && spe < 0) {
         // 한글과 같은 문자열 입력 방지.
-        document.getElementById('alert_password').innerText = "잘못된 형싱의 비밀번호입니다.";
+        document.getElementById('alert_password').innerText = "잘못된 형식의 비밀번호입니다.";
         return false;
     }
 

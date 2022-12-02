@@ -97,7 +97,32 @@
             <form name="login_form" action="http://113.198.232.72/main.php" method="get">
               <div  class="resultbox">
                 <a class="form_result_name"><b>총 자산</b></a><br>
-                <a class="form_result_sum"><b>111111111111</b></a><br>
+                <a class="form_result_sum"><b>
+                <?php //총자산 출력
+                $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
+                mysqli_query($connect, 'set session character_set_connection=utf8;');
+                mysqli_query($connect, 'set session character_set_results=utf8;');
+                mysqli_query($connect, 'set session character_set_client=utf8;');
+
+                $sql = "select money from tbl_202211 where 1st = 2 "; //1st가 2일경우 수입
+         
+                $result = mysqli_query($connect, $sql);
+                $Total_Mymoney = 0;
+
+                while($rows = mysqli_fetch_row($result)){
+                  $Total_Mymoney += $rows[0];
+              
+                }     
+                $sql = "select money from tbl_202211 where 1st = 1 "; //1st가 1일경우 지출
+ 
+                 $result = mysqli_query($connect, $sql);
+
+                while($rows = mysqli_fetch_row($result)){ //레코드 수
+                  $Total_Mymoney -= $rows[0];
+                  }
+                  echo $Total_Mymoney;
+                ?>
+                </b></a><br>
               </div>
 
               <div id="alert_username" class="form_text_alert"></div>
@@ -110,7 +135,25 @@
             <form name="login_form" action="http://113.198.232.72/main.php" method="get">
               <div class="resultbox">
                 <a class="form_result_name"><b>이달 소득</b></a><br>
-                <a class="form_result_plus"><b>+1111111111</b></a><br>
+                <a class="form_result_plus"><b>
+                <?php //이달 소득 출력
+                $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
+                mysqli_query($connect, 'set session character_set_connection=utf8;');
+                mysqli_query($connect, 'set session character_set_results=utf8;');
+                mysqli_query($connect, 'set session character_set_client=utf8;');
+
+                $sql = "select money from tbl_202211 where 1st = 2 "; //1st가 2일경우 수입
+
+                $result = mysqli_query($connect, $sql);
+                $count = mysqli_num_fields($result); // 필드수
+                $Total_Month_in = 0; 
+
+                while($rows = mysqli_fetch_row($result)){
+                    $Total_Month_in += $rows[0];
+                }
+                echo "$Total_Month_in";
+                ?>
+                </b></a><br>
               </div>
             </form>
         </fieldset>      
@@ -121,7 +164,25 @@
             <form name="login_form" action="http://113.198.232.72/main.php" method="get">
               <div class="resultbox">
                 <a class="form_result_name"><b>이달 지출</b></a><br>
-                <a class="form_result_minus"><b>-1111111111</b></a><br>
+                <a class="form_result_minus"><b>
+                <?php //이달 지출
+                $Total_Month_out = 0;
+                $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
+                mysqli_query($connect, 'set session character_set_connection=utf8;');
+                mysqli_query($connect, 'set session character_set_results=utf8;');
+                mysqli_query($connect, 'set session character_set_client=utf8;');
+
+                $sql = "select money from tbl_202211 where 1st = 1 "; 
+                $result = mysqli_query($connect, $sql);
+                $count = mysqli_num_fields($result); // 필드수
+ 
+                while($rows = mysqli_fetch_row($result)){
+                    $Total_Month_out -= $rows[0];
+                }
+
+                echo "$Total_Month_out";
+                ?>
+                </b></a><br>
               </div>
             </form>
         </fieldset>      
@@ -130,40 +191,44 @@
       <div class="import_container">
         <fieldset class="import_container">
               <table class="tb_main">
-                <? php
-                  $connect = mysqli_connect('localhost', 'manager', '123456', 'maindata');
-                  mysqli_query($connect, 'set session character_set_connection=utf8;');
-                  mysqli_query($connect, 'set session character_set_results=utf8;');
-                  mysqli_query($connect, 'set session character_set_client=utf8;');
 
-                  $sql = "select money from maintb where 1st == 2 "; 
+              <tr>
+                 <td class="td_main"><B> 대분류 </B></td>
+                 <td class="td_main"><B> 중분류 </B></td>
+                 <td class="td_main"><B> 소분류 </B></td>
+                 <td class="td_main"><B> 날짜 </B></td>
+                 <td class="td_main"><B> 변동금액 </B></td>
+                 <td class="td_main"><B> 메모 </B></td>
+              </tr>
 
-                  $result = mysqli_query($connect, $sql);
-                  $count = mysqli_num_fields($result); 
- 
-                  while($rows = mysqli_fetch_row($result)){ 
-                    $Total_Mymoney += $rows[1 ];
-                  }     
-                  $sql = "select money from maintb where 1st == 1 "; 
- 
-                  $result = mysqli_query($connect, $sql);
+              <?php //테이블 출력
+                $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
+                mysqli_query($connect, 'set session character_set_connection=utf8;');
+                mysqli_query($connect, 'set session character_set_results=utf8;');
+                mysqli_query($connect, 'set session character_set_client=utf8;');              
+                $db_select = "select * from tbl_202211 where token = '1'";
+                $result = mysqli_query($connect, $db_select);
 
-                  while($rows = mysqli_fetch_row($result)){ 
-                    $Total_Mymoney -= $rows[1];
-         
-                    echo "<tr>
-                      <td class="td_main"><B> 대분류 </B></td>
-                      <td class="td_main"><B> 중분류 </B></td>
-                      <td class="td_main"><B> 소분류 </B></td>
-                      <td class="td_main"><B> 날짜 </B></td>
-                      <td class="td_main"><B> 변동금액 </B></td>
-                      <td class="td_main"><B> 메모 </B></td>
-                     </tr>";
-                    echo"<tr>";
-                    echo "<td align='center'> $Total_Mymoney </td>";
-                  echo "</tr>";
+                $count = mysqli_num_fields($result);
+
+                while($rows = mysqli_fetch_row($result))
+                {
+                	echo "<tr>";
+                  if($rows[1] == 1){
+                    echo "<td align='center'> 지출 </td>";                       
                   }
-                php ?>
+                  elseif ($rows[1] == 2){
+                    echo "<td align='center'> 수입 </td>";
+                  }
+
+                	for($i = 2; $i <$count; $i++)
+                	{
+                      echo"<td align='center'> $rows[$i]</td>";
+                	}
+                	echo"</tr>";
+                }
+
+              ?>
                </table><br>
             </form>
         </fieldset>      
@@ -171,7 +236,7 @@
 
       <div class="input_container">
         <fieldset class="input_container">
-            <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+            <form name="login_form" action="http://113.198.232.72/GetData.php" method="get">
                   <form method="post" action="../php/">
                     <select class="selectbox selectbox_css" id="first" >
                       <option hidden>1차 카테고리</option>

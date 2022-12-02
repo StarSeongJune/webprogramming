@@ -17,7 +17,7 @@
 		<div class="choice_container">
       <fieldset class="choice_container">
         <div class="form_container">
-          <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+          <form name="login_form" action="main.php" method="POST">
           
             <div style="height: 20px;"></div>
             <!--메인 로고-->
@@ -29,59 +29,45 @@
 
             <div> <!--ID 표시-->
               <div>
-                <a class="form_item_name">ID: </a>
-                <a class="form_item_name">아무개</a>
+                <a class="form_item_name"> </a>
+                <?php
+                  $token = $_COOKIE["TOKEN"];
+                  $connect = mysqli_connect('localhost', 'root', '123456','profile');
+                  mysqli_query($connect, 'set session character_set_connection=utf8;');
+                  mysqli_query($connect, 'set session character_set_results=utf8;');
+                  mysqli_query($connect, 'set session character_set_client=utf8;');
+                  $sql = "select name from member_tbl where token = $token";
+                  $result = mysqli_query($connect, $sql);
+                  $rows = mysqli_fetch_row($result);
+                  echo  '<a class="form_item_name">';
+                  echo $rows[0];
+                  echo '님 환영합니다 </a>';
+                ?>
+                
               </div>
               <div class="form_text_alert_padding">
                 <div id="alert_username" class="form_text_alert"></div>
               </div>
             </div>
-
-            <div>
-              <div> <!--날짜 표시-->
-                <a class="form_item_name">Today: </a>
-                <a class="form_item_name">2022-11-23</a>
-              </div>
-              <div class="form_text_alert_padding">
-                <div id="alert_password" class="form_text_alert"></div>
-              </div>
-            </div>
-
-
             <div style="height: 10px;"></div>
-
             <div> <!--로그인 버튼-->
-              <button type="button" class="form_submit_button" onclick="login()">로그아웃</button>
+              <button type="button" class="form_submit_button">로그아웃</button>
             </div>
-
-            <script>
-              function setCookie(UserID, UserPW, ExpMinute){
-                let strCookie = "";
-                strCookie = UserID + '=' + encodeURLComponent(UserPW) + "; Expries" + ExpMinute;
-                document.cookie = strCookie;
-              }
-
-              function AddCookie(){
-                let UserID = "UserID";
-                let UserPW = $('#id');
-                let date = new Date();
-                date.setDate(date.getMinute() + 10);
-                let expDate = date.toUTCString();
-                window.location.href = "/showcookie";
-              }
-            </script>
 
             <div style="height: 10px;"></div>
 
             <div>
               <ul>
-                 <li><a href="http://113.198.232.72/html/main.html">마이페이지</a></li>
-                 <li><a href="http://113.198.232.72/html/class.html">분류</a></li>
-                 <li><a href="http://113.198.232.72/html/math.html">통계</a></li>
-                 <li><a href="http://113.198.232.72/html/heip.html">도움말</a></li>
+                 <li><a href="main.php">마이페이지</a></li>
+                 <li><a href="class.php">분류</a></li>
               </ul>
             </div>
-
+            <div style="height: 100px;"></div>
+            <form name="login_form" action="logout.php" method="POST">
+                     <div class="login_menu"> <!--회원탈퇴 버튼-->
+                     <button type="button" class="menu_item" method="POST">회원탈퇴</button>
+			               </div>
+             </from>
           </form>	
         </div>
       </fieldset>
@@ -94,17 +80,18 @@
     <td>
       <div class="print_container">
         <fieldset class="print_container">
-            <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+            <form name="login_form" action="main.php" method="POST">
               <div  class="resultbox">
                 <a class="form_result_name"><b>총 자산</b></a><br>
                 <a class="form_result_sum"><b>
                 <?php //총자산 출력
+                $token = $_COOKIE["TOKEN"];
                 $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
                 mysqli_query($connect, 'set session character_set_connection=utf8;');
                 mysqli_query($connect, 'set session character_set_results=utf8;');
                 mysqli_query($connect, 'set session character_set_client=utf8;');
 
-                $sql = "select money from tbl_202211 where 1st = 2 "; //1st가 2일경우 수입
+                $sql = "select money from tbl_202211 where 1st = 2 and token = $token"; //1st가 2일경우 수입
          
                 $result = mysqli_query($connect, $sql);
                 $Total_Mymoney = 0;
@@ -113,16 +100,15 @@
                   $Total_Mymoney += $rows[0];
               
                 }     
-                $sql = "select money from tbl_202211 where 1st = 1 "; //1st가 1일경우 지출
+                $sql = "select money from tbl_202211 where 1st = 1 and token = $token"; //1st가 1일경우 지출
  
-                 $result = mysqli_query($connect, $sql);
+                $result = mysqli_query($connect, $sql);
 
                 while($rows = mysqli_fetch_row($result)){ //레코드 수
                   $Total_Mymoney -= $rows[0];
                   }
                   echo $Total_Mymoney;
                 ?>
-
                 </b></a><br>
               </div>
 
@@ -133,7 +119,7 @@
 
       <div class="print_container">
         <fieldset class="print_container">
-            <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+            <form name="login_form" action="main.php" method="POST">
               <div class="resultbox">
                 <a class="form_result_name"><b>이달 소득</b></a><br>
                 <a class="form_result_plus"><b>
@@ -143,7 +129,7 @@
                 mysqli_query($connect, 'set session character_set_results=utf8;');
                 mysqli_query($connect, 'set session character_set_client=utf8;');
 
-                $sql = "select money from tbl_202211 where 1st = 2 "; //1st가 2일경우 수입
+                $sql = "select money from tbl_202211 where 1st = 2 and token = $token"; //1st가 2일경우 수입
 
                 $result = mysqli_query($connect, $sql);
                 $count = mysqli_num_fields($result); // 필드수
@@ -162,7 +148,7 @@
 
       <div class="print_container">
         <fieldset class="print_container">
-            <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+            <form name="login_form" action="main.php" method="POST">
               <div class="resultbox">
                 <a class="form_result_name"><b>이달 지출</b></a><br>
                 <a class="form_result_minus"><b>
@@ -173,7 +159,7 @@
                 mysqli_query($connect, 'set session character_set_results=utf8;');
                 mysqli_query($connect, 'set session character_set_client=utf8;');
 
-                $sql = "select money from tbl_202211 where 1st = 1 "; 
+                $sql = "select money from tbl_202211 where 1st = 1 and token = $token"; 
                 $result = mysqli_query($connect, $sql);
                 $count = mysqli_num_fields($result); // 필드수
  
@@ -191,31 +177,73 @@
 
       <div class="import_container">
         <fieldset class="import_container">
+           <form name="login_form" action="DeleteTable.php" method="POST">
               <table class="tb_main">
-               
+
+              <tr>
+                 <td class="td_main"><B> 대분류 </B></td>
+                 <td class="td_main"><B> 중분류 </B></td>
+                 <td class="td_main"><B> 소분류 </B></td>
+                 <td class="td_main"><B> 날짜 </B></td>
+                 <td class="td_main"><B> 변동금액 </B></td>
+                 <td class="td_main"><B> 메모 </B></td>
+                 <td class="td_main"><B> 삭제 </B></td>
+              </tr>
+
+              <?php //테이블 출력
+                $token = $_COOKIE["TOKEN"];
+                
+                $connect = mysqli_connect('localhost', 'root', '123456', 'maindata');
+                mysqli_query($connect, 'set session character_set_connection=utf8;');
+                mysqli_query($connect, 'set session character_set_results=utf8;');
+                mysqli_query($connect, 'set session character_set_client=utf8;');              
+                $db_select = "select * from tbl_202211 where token = '$token'";
+                $result = mysqli_query($connect, $db_select);
+
+                $count = mysqli_num_fields($result);
+
+                while($rows = mysqli_fetch_row($result))
+                {
+                	echo "<tr>";
+                  if($rows[1] == 1){
+                    echo "<td align='center'> 지출 </td>";                       
+                  }
+                  elseif ($rows[1] == 2){
+                    echo "<td align='center'> 수입 </td>";
+                  }
+
+                	for($i = 2; $i <$count; $i++)
+                	{
+                      echo"<td align='center'> $rows[$i]</td>";
+                	}
+                  echo"<td align='center'><button> 삭제</button></td>";
+                	echo"</tr>";
+                }
+
+              ?>
                </table><br>
-            </form>
+               </form>
         </fieldset>      
       </div>
 
       <div class="input_container">
         <fieldset class="input_container">
-            <form name="login_form" action="http://113.198.232.72/main.php" method="get">
+            <form name="login_form" action="GetData.php" method="POST">
                   <form method="post" action="../php/">
-                    <select class="selectbox selectbox_css" id="first" >
+                    <select class="selectbox selectbox_css" id="first" name="1st" >
                       <option hidden>1차 카테고리</option>
                       <option>지출</option>
                       <option>수입</option>
                     </select>
-                    <select class="selectbox selectbox_css" id="second" >
+                    <select class="selectbox selectbox_css" id="second" name="2nd" >
                       <option hidden>2차 카테고리</option>
                     </select>
-                      <select class="selectbox selectbox_css"id="third" >
+                      <select class="selectbox selectbox_css"id="third" name="3rd" >
                       <option hidden>3차 카테고리</option>
                     </select>
-                    <input type="number" name="money" class="selecttext_css">
-                    <input type="text" name="memo" class="selecttext_css">
-                    <input type="text" name="date" class="selecttext_css">
+                    <input type="number" name="money" class="selecttext_css" placeholder="금액">
+                    <input type="text" name="memo" class="selecttext_css" placeholder="메모">
+                    <input type="text" name="date" class="selecttext_css" placeholder="날짜">
                     <button id="sumitbutton" ><B>완료</B></button>
                   </form>
             </form>

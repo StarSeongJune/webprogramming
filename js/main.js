@@ -94,4 +94,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
 
     })
+
+
+    const logout = document.querySelector(".form_submit_button")
+    logout.addEventListener('click', (event)=>{
+        document.cookie = `TOKEN=; expires=Thu, 01 Jan 1999 00:00:10 GMT;`;
+        document.location.href='../index.html'; 
+    })
+
+    const logexit = document.querySelector(".menu_item")
+    logexit.addEventListener('click', (event)=>{
+        document.location.href='../php/logout.php'; 
+    })
 })
