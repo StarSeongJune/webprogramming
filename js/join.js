@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     let flag = [false, false, false, false]
 
     name.addEventListener('change', ()=>{
-        const nametitle = document.querySelector('#nametitle')
+        const nametitle = document.querySelector('#alert_name')
         if (name.value.length <3 || name.value.length >5){
             nametitle.textContent = "* 이름을 확인하세요."
             tored(name, event)
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         }
     })
     id.addEventListener('change', ()=>{
-        const idtilte = document.querySelector('#idtitle')
+        const idtilte = document.querySelector('#alert_id')
         if(id.value.length <5 || id.value.length>15){
             idtilte.textContent = "* 아이디를 5~15자 이내로 입력해주세요."
             tored(id, event)
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         }
     })
     pw.addEventListener('change',()=>{
-        const passwordtitle = document.querySelector('#passwordtitle')
+        const passwordtitle = document.querySelector('#alert_password')
         if(pw.value.length<6 || pw.value.length>15) {
             passwordtitle.textContent = "* 비밀번호를 6~15자 이내로 입력해주세요."
             tored(pw, event)
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         }
     })
     pwcheck.addEventListener('change', ()=>{
-        const passwordchecktitle = document.querySelector('#passwordchecktitle')
+        const passwordchecktitle = document.querySelector('#alert_pwcheck')
         if(pwcheck.value !== pw.value){
             passwordchecktitle.textContent = "* 입력한 비밀번호가 다릅니다."
             tored(pwcheck, event, flag)
@@ -68,7 +68,4 @@ function tored(querryname, event){
 function todefault(querryname, divbox){
     querryname.style.borderColor = 'black'
     divbox.textContent=""
-}
-function check(){
-
 }

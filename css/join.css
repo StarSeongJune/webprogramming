@@ -5,76 +5,111 @@ input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
 }
 
-#로고박스{
-    margin: 0 auto;
-
+body{
+    position: absolute;
+    width : 100%;
+    min-height : 100%;
+    margin:0;
+	overflow-y: scroll;
+	background-image : url(../img/background.png);
+	backdrop-filter: blur(15px);
 }
-#로고박스_li{
-    margin-top : 10%;
-    margin-bottom: 10%;
-    text-align: center;
-    height: 100px;
 
+#로고박스{
+    text-align: center;
 }
 
 li{
     list-style-type: none;
-    padding: 10px;
 }
-#외부박스{
-    margin-left: 30%;
-    margin-right: 30%;
-    padding: 0px;
+
+.경고{
+    height : 20px;
+    padding-bottom:10px;
+    font-size : 9pt;
+    color : red;
 
 }
+
+#외부박스{
+    position : absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:block;
+    border : none;
+    width : 450px;
+    height : 750px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+	background-color: white;
+	border-radius: 7px;
+}
+
+#항목박스{
+    position : absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:400px;
+    padding:0;
+    margin: auto;
+}
+
 .title{
-    margin-left: 0.5%;
-    margin-bottom: 5px;
+    margin : auto;
+    padding-bottom:10px;   
 }
-.input{
-    margin : 0 auto;
-    width: 100%;
-    height: 50px;
-    border : #E2E2E2;
+
+input{
+    width: 98%;
+	height: 30px;
+    margin : auto;
+    border : white;
     border-bottom-style: solid;
-    border-bottom-color:  black;
-    border-bottom-width: 1px;
-    border-radius: 3px;
+    border-bottom-color: #e5e8eb;
+    border-bottom-width: 3px;
     outline : none;
-    caret-color: transparent;
-    text-align: left;
-    font-size: 15pt;
+    font-size: 12pt;
 }
-.input:focus{
-    outline : 2px solid #caafe3;
-    border-bottom-style: none;
+
+input:focus{
+    border-bottom:3px solid blue;
+	outline: none;
+	transition: border-color .2s linear;
 }
-.input_pn{
-    margin : 0 auto;
-    width: 30%;
-    height: 50px;
+
+.input_pn, .input_pn0{
+    margin : auto;
+    width: 120px;
+    height: 30px;
     border : #E2E2E2;
     border-bottom-style: solid;
     border-bottom-color:  black;
     border-bottom-width: 1px;
-    border-radius: 3px;
-    outline-color: #caafe3;
     text-align: center;
-    border-radius: 5px;
-    -webkit-appearance: none;
+    font-size: 15px;
 }
-#submit_button{
-    width: 100%;
-    height: 80px;
-    border: 1px solid #e5e8eb;
-    margin-top : 10%;
-    border-radius: 5px;
-    background-color: #1e2124;
-    cursor: pointer;
-    font-size: 12pt;
+
+.input_pn0{
+    width: 80px;
+}
+
+.sigh_minus{
+    font-size:20px;
     font-weight: bold;
-    color: white;
-    text-align: center;
+}
+
+#submit_button{
+    cursor: pointer;
+    width: 100%;
+	height: 44px;
+    margin-top:10px;
+	background-color: black;
+	border: 1px;
+	border-radius: 3px;
+	color: white;
+	font-size: 17px;
+    font-weight: bold;
 }
 #nametitle, #idtitle, #passwordtitle, #passwordchecktitle, #phonetitle{
     color: red;

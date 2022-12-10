@@ -1,28 +1,26 @@
 input{
-	border: 1px solid #e5e8eb;
-	background-color: #fff;
+	border: white;
+	border-bottom: 3px solid #e5e8eb;
+	background-color: white;
 	outline: 0;
 	transition: border-color .15s linear
   }
   
   input:focus{
-	border:3px solid #caafe3;
+	border-bottom:3px solid blue;
 	outline: none;
 	transition: border-color .2s linear;
   }
   
   body{
-	position: absolute;
+	position:absolute;
 	width: 100%;
     min-height: 100%;
+	margin:0;
 	overflow-y: scroll;
-	background-color: #FCF8FF;  
-}
-
-fieldset{
-	position: absolute;
-	display: block;
-	border:3px solid #f7edff;
+	background-image : url(./img/background.png);
+	background-repeat : round;
+	backdrop-filter: blur(15px);
 }
 
 #logo{
@@ -33,16 +31,18 @@ fieldset{
   }
 
   
-  .main_container{
-	  border: 0px solid;
-  }
-  
   .login_container{
-	width: 380px;
-	height: 520px;
-	background-color: #ffffff;
-	margin: auto;
-	border-radius: 3px;
+	position:absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 520px;
+	height: 450px;
+	display: block;
+	border: none;
+	box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+	background-color: white;
+	border-radius: 7px;
   }
   
   .form_container{
@@ -51,43 +51,51 @@ fieldset{
   }
   
   .form_title_div{
+	display : inline;
 	margin: auto;
-	padding-top: 40px;
 	text-align: center;
+  }
+
+  .form_item_div{
+	display : inline;
+	margin-left: 0;
   }
   
   .form_input{
 	width: 98%;
 	height: 30px;
-	border: 1px solid;
-	border-radius: 3px;
-	border-color: gray;
   }
   
   .form_item_name{
-	color: gray;
+	padding-top: 10px;
+    padding-bottom: 20px;
+	display: block;
+	font-size:25px;
+	color: black;
   }
   
   .form_text_alert{
 	height: 20px;
-  }
-  
-  .form_text_alert_padding{
 	padding-bottom: 10px;
+	font-size: 9pt;
   }
   
   .form_submit_button{
 	width: 100%;
 	height: 44px;
-	background-color: #caafe3;
+	background-color: black;
+	cursor: pointer;
 	border: 1px;
 	border-radius: 3px;
 	color: white;
 	font-size: 17px;
 	font-weight: 500;
-  }
+
+}
   
   .login_menu{
+	display:block;
+	margin-top:10px;
 	height : 100%;
 	width : 100%;
 	font-size: 12px;
@@ -98,25 +106,3 @@ fieldset{
 	font-size: 12px;
 	color: gray;
   }
-  
-  .info{
-	text-align: right;
-  }
-  
-  .footer {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	min-width: 328px;
-	height: 80px;
-	padding: 32px 0 0;
-	text-align: center
-  }
-  
-  .footer p {
-	display: block;
-	font-size: 11px;
-	color: #9fa1a7
-  }
-  

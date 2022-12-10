@@ -7,29 +7,47 @@
     <link rel="stylesheet" href="../css/join.css">
     <script src="../js/join.js"></script>
 </head>
-<body>
-<div id="외부박스">
-    <div>
-        <form method="post" action="../php/Join_us.php">
-            <ul>
-                <li id="로고박스_li"><div><h1>참조 가계부 회원가입</h1></div></li>
-                <li><h3 class="title">이름</h3><div id="nametitle" ></div></li>
-                <li><label><input type="text" id="이름" name="name" placeholder=""  class="input"> </label></li>
-                <li><h3 class="title">아이디</h3><div id="idtitle"></div></li>
-                <li><label><input type="text" id="아이디" name="id"placeholder="5~15자 이내" class="input"></label></li>
-                <li><h3 class="title">비밀번호</h3><div id="passwordtitle"></div></li>
-                <li><label><input type="password" id="비밀번호" name="pw"placeholder="6~15자 이내" class="input"> </label></li>
-                <li><h3 class="title">비밀번호 확인</h3><div id="passwordchecktitle"></div></li>
-                <li><label><input type="password" id="비밀번호체크" name="pwcheck"placeholder="" class="input"> </label></li>
-                <li><h3 class="title">연락처</h3><div id="phonetitle"></div></li>
-                <li><label><select name="pn0" class="input_pn" style="height: 54px;">
+<body style = "background-image : url(../img/background.png);" >
+<fieldset id="외부박스" >
+    <form method="post" action="../php/Join_us.php">
+        <ul id="항목박스">
+            <li id="로고박스"><div><h1>가계부 회원가입</h1></div></li>
+
+            <li><h3 class="title">이름</h3></li>
+            <li><label><input type="text" id="이름" name="name" placeholder="이름을 입력해주세요"  class="input"> </label></li>
+            <li><div id="alert_name" class="경고"></div></li>
+
+            <li><h3 class="title">아이디</h3></li>
+            <li><label><input type="text" id="아이디" name="id"placeholder="5~15자 이내" class="input"></label></li>
+            <li><div id="alert_id" class="경고"></div></li>
+
+            <li><h3 class="title">비밀번호</h3></li>
+            <li><label><input type="password" id="비밀번호" name="pw"placeholder="6~15자 이내" class="input"> </label></li>
+            <li><div id="alert_password" class="경고"></div></li>
+
+            <li><h3 class="title">비밀번호 확인</h3></li>
+            <li><label><input type="password" id="비밀번호체크" name="pwcheck"placeholder="비밀번호를 다시 한 번 입력해주세요." class="input"> </label></li>
+            <li><div id="alert_pwcheck" class="경고"></div></li>
+
+            <li><h3 class="title">연락처</h3></li>
+            <li><label>
+                <select name="pn0" class="input_pn0">
                     <option >010</option>
-                </select > - <input type="text" name="pn1" class="input_pn"> - <input type="text" name="pn3" class="input_pn"></label></li>
-                <li><label><button id="submit_button">등록하기</button>
-                </label></li>
-            </ul>
-        </form>
-    </div>
-</div>
+                    <option >011</option>
+                    <option >018</option>
+                    <option >02</option>
+                </select > 
+                <a class = "sigh_minus">-</a> 
+                <input type="text" name="pn1" class="input_pn"> 
+                <a class = "sigh_minus">-</a> 
+                <input type="text" name="pn3" class="input_pn">
+            </label></li>
+            <li><div id="alert_phonenum" class="경고"></div></li>
+
+            <li><label><button id="submit_button">등록하기</button>
+            </label></li>
+        </ul>
+    </form>
+</fieldset>
 </body>
 </html>

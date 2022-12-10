@@ -11,12 +11,13 @@ $sql = "delete from $tablename where number = $number";
 $result = mysqli_query($connect, $sql);
 if($result){
 	echo "<script> 
-		 document.location.href='main.php'; 
+		 alert('삭제되었습니다.');
+		 document.location.href='classification_Page.php'; 
 		 </script>";
 }else{
 	echo "<script> 
 		 alert('삭제 되지 않았습니다.');
-		 document.location.href='main.php'; 
+		 document.location.href='classification_Page.php'; 
 		 </script>";
 }
 ?>
