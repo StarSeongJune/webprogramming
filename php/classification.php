@@ -40,12 +40,12 @@
                     <button class="form_nav_box form_submit_button">로그아웃</button>
                 </form>
 
-                <div class = "form_nav_box form_nav_box2">
-                    <a href="main.php" class="movepage">가계기입</a>
+                <div onclick="location.href='main.php'" class = "form_nav_box form_nav_box2">
+                    <a>가계기입</a>
                 </div>
 
-                <div class = "form_nav_box form_nav_box3">
-                    <a href="classification_Page.php" class="movepage">상세조회</a>
+                <div onclick="location.href='classification_Page.php'"  class = "form_nav_box form_nav_box3">
+                    <a>상세조회</a>
                 </div>
             </div>
 
@@ -88,22 +88,24 @@
         <div id = "data_output">
             <table class="tb_main">
                 <tr>
-                    <td class="td_main"><B> 날짜 </B></td>
-                    <td class="td_main"><B> 구분 </B></td>
-                    <td class="td_main"><B> 대분류 </B></td>
-                    <td class="td_main"><B> 소분류 </B></td>
-                    <td class="td_main"><B> 금액 </B></td>
-                    <td class="td_main"><B> 메모 </B></td>
-                    <td class="td_main"><B> 삭제 </B></td>
+                    <td class="td_main date_class"><B> 날짜 </B></td>
+                    <td class="td_main io_class"><B> 구분 </B></td>
+                    <td class="td_main div1_class"><B> 대분류 </B></td>
+                    <td class="td_main div2_class"><B> 소분류 </B></td>
+                    <td class="td_main money_class"><B> 금액 </B></td>
+                    <td class="td_main memo_class"><B> 메모 </B></td>
+                    <td class="td_main del_class"><B> 삭제 </B></td>
                 </tr>
                 <?php //테이블 출력
                             $token = $_COOKIE['TOKEN']; //받아온 토큰 저장 (사용자)
 
                             $db_year = ($_POST['year']);
                             $db_month = ($_POST['month']);
+
                             $db_1st = ($_POST['1st']);
                             $db_2nd = ($_POST['2nd']);
                             $db_3rd = ($_POST['3rd']);
+
                             $db_find = "tbl_".($db_year).($db_month);
 
                             switch($db_1st){
@@ -129,10 +131,10 @@
                             elseif($db_3rd=="고정 상세 카테고리" || $db_3rd=="특별 상세 카테고리" || $db_3rd=="기타 상세 카테고리"||
                                    $db_3rd=="식비 상세 카테고리" || $db_3rd=="쇼핑 상세 카테고리" || $db_3rd=="여가 상세 카테고리"||
                                    $db_3rd=="교통 상세 카테고리" || $db_3rd=="의료 상세 카테고리" || $db_3rd=="정기 상세 카테고리"){
-                                    $db_select = "select * from $db_find where token = $token and 1st = $db_1st and 2nd = '$db_2nd ORDER BY time ASC'";
+                                    $db_select = "select * from $db_find where token = $token and 1st = $db_1st and 2nd = '$db_2nd' ORDER BY time ASC";
                             }
                             else{
-                                $db_select = "select * from $db_find where token = $token and 1st = $db_1st and 2nd = '$db_2nd' and 3rd = '$db_3rd ORDER BY time ASC'";
+                                $db_select = "select * from $db_find where token = $token and 1st = $db_1st and 2nd = '$db_2nd' and 3rd = '$db_3rd' ORDER BY time ASC";
                             }
 
                             $result = mysqli_query($connect, $db_select);
@@ -152,20 +154,20 @@
                                 echo "<td class = 'date_class' align='center'>" . $rows[4] . "</td>";
                                 //if($rows[4]){}
                                 if($rows[1] == 1){
-                                    echo "<td align='center'> 지출 </td>";
+                                    echo "<td class = 'io_class' align='center'> 지출 </td>";
                                 }
                                 elseif ($rows[1] == 2){
-                                    echo "<td align='center'> 수입 </td>";
+                                    echo "<td class = 'io_class' align='center'> 수입 </td>";
                                 }
 
-                                echo "<td class = 'div_class' align='center'>" . $rows[2] . "</td>";
-                                echo "<td class = 'div_class' align='center'>" . $rows[3] . "</td>";
+                                echo "<td class = 'div1_class' align='center'>" . $rows[2] . "</td>";
+                                echo "<td class = 'div2_class' align='center'>" . $rows[3] . "</td>";
                                 echo "<td class = 'money_class' align='right'>" . number_format($rows[5]) ."원</td>";
                                 echo "<td class = 'memo_class' align='center'>" . $rows[6] . "</td>";
                                 echo "<form action=../php/DeleteTable-classification.php method='post' id='tempform'>";
-                                echo "<td align='center'><textarea name='number' hidden>".$rows[7]."</textarea>
+                                echo "<td class = 'del_class' align='center'><textarea name='number' hidden>".$rows[7]."</textarea>
                                 <textarea name='month' hidden>".$rows[4]."</textarea>
-                                <input type='submit' class= Delete_item value='삭제'></td>";
+                                <input type='submit' class= 'Delete_item' value='삭제'></td>";
                                 echo"</tr>";
                                 echo "</form>";
                             }

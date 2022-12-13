@@ -40,12 +40,12 @@
                     <button class="form_nav_box form_submit_button">로그아웃</button>
                 </form>
 
-                <div class = "form_nav_box form_nav_box2">
-                    <a href="main.php" class="movepage">가계기입</a>
+                <div onclick="location.href='main.php'" class = "form_nav_box form_nav_box2">
+                    <a>가계기입</a>
                 </div>
 
-                <div class = "form_nav_box form_nav_box3">
-                    <a href="classification_Page.php" class="movepage">상세조회</a>
+                <div onclick="location.href='classification_Page.php'" class = "form_nav_box form_nav_box3">
+                    <a>상세조회</a>
                 </div>
             </div>
 
